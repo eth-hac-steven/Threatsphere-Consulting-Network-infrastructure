@@ -25,14 +25,17 @@ A Captive portal is an important part of Network access control in an Enterprise
 - Enter a Zone Description eg Zone for Human-Res staff
 - Click ```Save and Continue```
 
-![Captive Portal zone creation form with name and description fields](./images/THcon-Captive-portal-config-pt3(zone-name).png) 
+![Captive Portal zone creation form with name and description fields](./images/THcon-Captive-portal-config-pt3(zozne-name).png) 
 
 - Check "Enable Captive Portal"
 - In Interface, select "HumanRes"
 
+PS
+- Also do this for the LAN interface you are currently connected to.
+
 pfSense has done a good job in telling us what each feature does. Remember that Enterprise environments differ, so what you are doing should suit yours.
 
-![Captive Portal settings with Enable option and HumanRes interface selected](./images/THcon-Captive-portal-config-pt3-enabling-interface.png)
+![Captive Portal settings with Enable option and HumanRes interface selected](./images/THcon-Captive-portal-config-pt3-enabing-interface.png)
 
 - Set Idle Timeout: 30 
 - Check "Logout Pop-up Window"
@@ -61,6 +64,7 @@ pfSense has done a good job in telling us what each feature does. Remember that 
 First we create groups 
 
 - Click on ```Groups```
+   - Groups simply help to apply configs to all user added to this group instead of doing it one by one
 - Click on ```Add```
 
 ![User Manager interface showing Groups tab with Add button](./images/THcon-Captive-portal-user-config-pt2.png) 
@@ -69,6 +73,16 @@ First we create groups
 - Enter a Description
 
 ![Group creation form with name and description fields](./images/THcon-Captive-portal-user-config-pt3.png) 
+
+
+- In the assigned privilegedes section
+- click on Add
+  - this is important, without this the user accounts created would be denied access and or rejected
+- select User-Service : Captive Portal
+
+![Assiginng privilegedes to the different groups](THcon-Captive-portal-Group-privilegdes.png)
+
+- click on Save
 
 - Do this for all others
 
@@ -99,3 +113,36 @@ Make sure to add the user as a member of the right groups
 - And repeat for the other users
 
 ![User account list showing all created user accounts with their assigned groups](./images/THcon-Captive-portal-user-account-display.png)
+
+With all that done you should see this appear in  your browser  
+
+![PFsense defualt Captive-portal page](./images/captive-portal-page.png)
+
+### Confirmation
+
+ Now lets Test the user account created, using anyone of the authenticatin methods 
+
+ #### Before login
+
+![Captive-portal-before-login](./images/THcon-Captive-portal-before-login.png)
+
+ #### After login
+
+![Captive-portal-after-login](./images/THcon-Captive-portal-after-login.png)
+
+you see the logout pop up windows
+
+ #### Captive portal  Access logs
+
+ - Click on the menu 
+ - click on status 
+ - click on captive portal 
+ - selct the zone
+ - you see who is logged in 
+
+
+![success-login](./images/success-login.png)  
+
+
+
+
